@@ -1,0 +1,56 @@
+{
+    "products": [
+        {
+            "name": "Internet",
+            "id": 11,
+            "price": 59
+        },
+        {
+            "name": "Telewizja",
+            "id": 22,
+            "price": 59
+        },
+        {
+            "name": "Abonament telefoniczny",
+            "id": 33,
+            "price": 29
+        },
+        {
+            "name": "Dekoder 4K",
+            "id": 44,
+            "price": 29,
+            "includeId": [
+                22
+            ]
+        },
+        {
+            "name": "Usługa testowa (tylko 2024 - 2025 rok)",
+            "id": 157,
+            "price": 59
+        }
+    ],
+    "packages": [
+        {
+            "id": 11,
+            "includeId": [
+                22
+            ],
+            "price": 99
+        },
+        {
+            "id": 11,
+            "includeId": [
+                33
+            ],
+            "price": 99
+        },
+        {
+            "id": 44,
+            "includeId": [
+                11,
+                22
+            ],
+            "price": 0
+        }
+    ]
+}

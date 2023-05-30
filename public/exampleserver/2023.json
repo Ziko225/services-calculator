@@ -1,0 +1,51 @@
+{
+    "products": [
+        {
+            "name": "Internet",
+            "id": 11,
+            "price": 39
+        },
+        {
+            "name": "Telewizja",
+            "id": 22,
+            "price": 49
+        },
+        {
+            "name": "Abonament telefoniczny",
+            "id": 33,
+            "price": 29
+        },
+        {
+            "name": "Dekoder 4K",
+            "id": 44,
+            "price": 29,
+            "includeId": [
+                22
+            ]
+        }
+    ],
+    "packages": [
+        {
+            "id": 11,
+            "includeId": [
+                22
+            ],
+            "price": 79
+        },
+        {
+            "id": 11,
+            "includeId": [
+                33
+            ],
+            "price": 79
+        },
+        {
+            "id": 44,
+            "includeId": [
+                11,
+                22
+            ],
+            "price": 0
+        }
+    ]
+}
