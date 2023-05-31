@@ -11,12 +11,10 @@ export type Data = {
     ],
     packages: [
         {
-            id: number;
-            includeId: Array<number>;
+            id: Array<number>;
             price: number;
         }
-    ],
-    years: Array<number>;
+    ];
 } | null;
 
 const useGetData = (year?: string) => {
@@ -34,6 +32,7 @@ const useGetData = (year?: string) => {
 
     useEffect(() => {
         getData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [year]);
 
     return data;

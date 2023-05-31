@@ -37,8 +37,9 @@ const SelectedServices = ({ selectedServicesId, data, addService, removeService,
                             servicesWithIncudeId(productId).map((e) =>
                                 !selectedServicesId.includes(e.includeId!) &&
                                 <li className="offered" key={e.id}>
-                                    Do usługi<strong >{e.name}</strong>
-                                    polecamy usługe:<strong> {findServiceNameByid(e.includeId!)}</strong>
+                                    <span>
+                                        Do usługi: <strong >{e.name}</strong> polecamy usługe: <strong>{findServiceNameByid(e.includeId!)}</strong>
+                                    </span>
                                     <button onClick={() => addService(e.includeId!)} className="services__button">+</button>
                                 </li>
                             )

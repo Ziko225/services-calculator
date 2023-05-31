@@ -6,15 +6,17 @@ import SelectedServices from "./SelectedServices";
 import ChooseService from "./ChooseService";
 import useCount from "./hooks/useCount";
 import "./style.css";
+import Price from "./Price";
 
 const Calculator = () => {
     const { selectedServicesId, addService, removeService, clearSelectedServices } = useSelectedServices();
     const [year, setYear] = useState<string>("");
     const data = useGetData(year);
-    const count = useCount(data, selectedServicesId);
+    const { price, discountPrice } = useCount(data, selectedServicesId);
 
     useEffect(() => {
         clearSelectedServices();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [year, data]);
 
     return (
@@ -30,7 +32,7 @@ const Calculator = () => {
                 removeService={removeService}
                 clearSelectedServices={clearSelectedServices}
             />
-            {selectedServicesId[0] && <span className="calculator__price">Cena: {count()} zł</span>}
+            <Price price={price} discountPrice={discountPrice} selectedServicesId={selectedServicesId} />
         </div>
     );
 };

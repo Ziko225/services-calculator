@@ -3,9 +3,9 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    font-size: 20px;
+    font-size: 16px;
     margin-bottom: 15px;
-    gap: 0 10px
+    gap: 0 7px
 }
 
 .services__button {

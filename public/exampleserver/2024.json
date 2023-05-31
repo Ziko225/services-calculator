@@ -35,24 +35,24 @@
     ],
     "packages": [
         {
-            "id": 11,
-            "includeId": [
+            "id": [
+                11,
                 22
             ],
             "price": 89
         },
         {
-            "id": 11,
-            "includeId": [
+            "id": [
+                11,
                 33
             ],
             "price": 89
         },
         {
-            "id": 44,
-            "includeId": [
+            "id": [
                 11,
-                22
+                22,
+                44
             ],
             "price": 0
         }
