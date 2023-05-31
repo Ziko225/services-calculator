@@ -14,7 +14,7 @@ const Calculator = () => {
     const count = useCount(data, selectedServicesId);
 
     useEffect(() => {
-        !data && clearSelectedServices();
+        clearSelectedServices();
     }, [year, data]);
 
     return (
@@ -26,6 +26,7 @@ const Calculator = () => {
             <SelectedServices
                 selectedServicesId={selectedServicesId}
                 data={data}
+                addService={addService}
                 removeService={removeService}
                 clearSelectedServices={clearSelectedServices}
             />

@@ -1,27 +1,38 @@
 .offered {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
     font-size: 20px;
     margin-bottom: 15px;
+    gap: 0 10px
 }
 
-.offered--services {}
-
-
-.offered__button {
+.services__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     border: none;
-    margin: 0 10px 0 5px;
+    margin: 0 10px -4px 5px;
     background-color: teal;
     color: #fff;
-    width: 25px;
-    height: 25px;
+    padding: 4px 8px;
     cursor: pointer;
+}
+
+.services__button:hover {
+    filter: brightness(120%);
+}
+
+.services__button:active {
+    filter: brightness(90%);
 }
 
 .resetButton {
     align-self: flex-end;
-    margin-top: 30px;
     padding: 13px 20px;
-    border-radius: 8px;
+    border-radius: 4px;
     border: none;
     background-color: #666;
     color: #fff;

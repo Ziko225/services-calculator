@@ -4,12 +4,19 @@ import "./style.css";
 type Props = {
     selectedServicesId: Array<number>;
     data: Data;
+    addService: (e: number) => void;
     removeService: (e: number) => void;
     clearSelectedServices: () => void;
 };
 
-const SelectedServices = ({ selectedServicesId, data, removeService, clearSelectedServices }: Props) => {
-    const findServiceNameByid = (id: number) => data?.products.filter((e) => e.id === id).map((e) => e.name);
+const SelectedServices = ({ selectedServicesId, data, addService, removeService, clearSelectedServices }: Props) => {
+    const findServiceNameByid = (id: number) => {
+        return data?.products.filter((e) => e.id === id).map((e) => e.name);
+    };
+
+    const servicesWithIncudeId = (id: number) => {
+        return data?.products.filter((e) => e.includeId && e.id === id) || [];
+    };
 
     if (selectedServicesId[0]) {
         return (
@@ -27,15 +34,12 @@ const SelectedServices = ({ selectedServicesId, data, removeService, clearSelect
                 <ul>
                     <ul>{
                         selectedServicesId.map((productId) => (
-                            data?.products.filter((e) => e.includeId && e.id === productId).map((e) =>
-
+                            servicesWithIncudeId(productId).map((e) =>
+                                !selectedServicesId.includes(e.includeId!) &&
                                 <li className="offered" key={e.id}>
-                                    Do usługi <strong >{e.name}</strong> polecamy usługe: {e.includeId?.map((e) =>
-                                        <>
-                                            <strong className="offered--services" key={e}>{findServiceNameByid(e)}</strong>
-                                            <button className="offered__button">+</button>
-                                        </>
-                                    )}
+                                    Do usługi<strong >{e.name}</strong>
+                                    polecamy usługe:<strong> {findServiceNameByid(e.includeId!)}</strong>
+                                    <button onClick={() => addService(e.includeId!)} className="services__button">+</button>
                                 </li>
                             )
                         ))}
