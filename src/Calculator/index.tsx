@@ -29,9 +29,7 @@ const Calculator = () => {
                 removeService={removeService}
                 clearSelectedServices={clearSelectedServices}
             />
-            <div>
-                <h2>{count()} zł</h2>
-            </div>
+            {selectedServices[0] && <span className="calculator__price">Cena: {count()} zł</span>}
         </div>
     );
 };

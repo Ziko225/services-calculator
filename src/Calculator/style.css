@@ -9,12 +9,21 @@
     box-shadow: 2px 2px 10px#4444;
 }
 
+.calculator__subtitile {
+    margin-bottom: 0;
+}
+
 .calculator__list {
     display: flex;
     flex-wrap: wrap;
 }
 
-.productButton {
+.calculator__price {
+    font-size: 50px;
+    font-weight: 700;
+}
+
+.list__button {
     padding: 10px 15px;
     margin: 5px;
     cursor: pointer;
@@ -25,11 +34,11 @@
     transition: 300ms;
 }
 
-.productButton:hover {
+.list__button:hover {
     transform: translateY(-6px);
 }
 
-.productButton:active {
+.list__button:active {
     transition: 0ms;
     filter: brightness(120%);
     transform: translateY(2px);
