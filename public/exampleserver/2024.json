@@ -24,12 +24,9 @@
             ]
         },
         {
-            "name": "Usługa testowa (tylko 2024 - 2025 rok)",
+            "name": "Usługa testowa (tylko 2024 rok)",
             "id": 157,
-            "price": {
-                "2024": 59,
-                "2025": 59
-            }
+            "price": 59
         }
     ],
     "packages": [

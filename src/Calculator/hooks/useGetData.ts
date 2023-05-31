@@ -1,26 +1,26 @@
 import { useState, useEffect } from "react";
 
-type Data = {
+export type Data = {
     products: [
         {
             name: string;
             id: number;
-            price: number
+            price: number;
             includeId?: Array<number>;
         }
     ],
     packages: [
         {
             id: number;
-            includeId: Array<number>
-            price: number
+            includeId: Array<number>;
+            price: number;
         }
     ],
     years: Array<number>;
-}
+} | null;
 
 const useGetData = (year?: string) => {
-    const [data, setData] = useState<Data | null>();
+    const [data, setData] = useState<Data>(null);
 
     const getData = async () => {
         try {
@@ -34,9 +34,9 @@ const useGetData = (year?: string) => {
 
     useEffect(() => {
         getData();
-    }, [year])
+    }, [year]);
 
-    return data
+    return data;
 };
 
 export default useGetData;
