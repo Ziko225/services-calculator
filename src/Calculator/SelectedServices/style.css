@@ -1,14 +1,33 @@
+.offered {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.offered--services {}
+
+
+.offered__button {
+    border-radius: 50%;
+    border: none;
+    margin: 0 10px 0 5px;
+    background-color: teal;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
 .resetButton {
     align-self: flex-end;
     margin-top: 30px;
     padding: 13px 20px;
     border-radius: 8px;
-    cursor: pointer;
     border: none;
     background-color: #666;
     color: #fff;
     font-weight: 700;
     font-size: 14px;
+    cursor: pointer;
 }
 
 .resetButton:hover {

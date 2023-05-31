@@ -27,6 +27,15 @@
             "name": "Usługa testowa (tylko 2024 rok)",
             "id": 157,
             "price": 59
+        },
+        {
+            "name": "Usługa testowa (wymaga telewizii i internet)",
+            "id": 117,
+            "price": 59,
+            "includeId": [
+                22,
+                11
+            ]
         }
     ],
     "packages": [

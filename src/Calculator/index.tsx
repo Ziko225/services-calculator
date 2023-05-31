@@ -8,10 +8,10 @@ import useCount from "./hooks/useCount";
 import "./style.css";
 
 const Calculator = () => {
-    const { selectedServices, addService, removeService, clearSelectedServices } = useSelectedServices();
-    const [year, setYear] = useState<string | undefined>();
+    const { selectedServicesId, addService, removeService, clearSelectedServices } = useSelectedServices();
+    const [year, setYear] = useState<string>("");
     const data = useGetData(year);
-    const count = useCount(data, selectedServices);
+    const count = useCount(data, selectedServicesId);
 
     useEffect(() => {
         !data && clearSelectedServices();
@@ -22,14 +22,14 @@ const Calculator = () => {
             <h1>kalkulator usług telekomunikacyjnych</h1>
             <label htmlFor="range" typeof="selector">Wyberz rok:</label>
             <SelectYear onChange={setYear} />
-            <ChooseService data={data} selectedServices={selectedServices} addService={addService} />
+            <ChooseService data={data} selectedServices={selectedServicesId} addService={addService} />
             <SelectedServices
-                selectedServices={selectedServices}
+                selectedServicesId={selectedServicesId}
                 data={data}
                 removeService={removeService}
                 clearSelectedServices={clearSelectedServices}
             />
-            {selectedServices[0] && <span className="calculator__price">Cena: {count()} zł</span>}
+            {selectedServicesId[0] && <span className="calculator__price">Cena: {count()} zł</span>}
         </div>
     );
 };

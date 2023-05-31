@@ -1,26 +1,26 @@
 import { useState } from "react";
 
 const useSelectedServices = () => {
-    const [selectedServices, setSelectedServices] = useState<Array<number>>([]);
+    const [selectedServicesId, setSelectedServicesId] = useState<Array<number>>([]);
 
-    const clearSelectedServices = () => setSelectedServices([]);
+    const clearSelectedServices = () => setSelectedServicesId([]);
 
     const addService = (id: number) => {
-        if (selectedServices.includes(id)) {
+        if (selectedServicesId.includes(id)) {
             return;
         }
 
-        setSelectedServices([...selectedServices, id]);
+        setSelectedServicesId([...selectedServicesId, id]);
     };
 
     const removeService = (index: number) => {
-        setSelectedServices([
-            ...selectedServices.slice(0, index),
-            ...selectedServices.slice(index + 1),
+        setSelectedServicesId([
+            ...selectedServicesId.slice(0, index),
+            ...selectedServicesId.slice(index + 1),
         ]);
     };
 
-    return { selectedServices, addService, removeService, clearSelectedServices };
+    return { selectedServicesId, addService, removeService, clearSelectedServices };
 };
 
 export default useSelectedServices;
