@@ -1,5 +1,5 @@
 {
-    "products": [
+    "services": [
         {
             "name": "Internet",
             "id": 11,
@@ -46,13 +46,15 @@
                 11,
                 33
             ],
-            "price": 89
-        },
+            "price": 64
+        }
+    ],
+    "specialOffer": [
         {
-            "id": [
+            "id": 44,
+            "includeId": [
                 11,
-                22,
-                44
+                22
             ],
             "price": 0
         }

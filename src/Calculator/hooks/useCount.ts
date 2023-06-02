@@ -1,49 +1,70 @@
 import { useEffect, useState } from "react";
 import { Data } from "./useGetData";
 
-const useCount = (data: Data, selectedServices: Array<number>) => {
+const useCount = (data: Data, selectedServicesId: Array<number>) => {
     const [price, setPrice] = useState(0);
     const [discountPrice, setDiscountPrice] = useState(0);
 
-    const contains = (selectedServices: Array<number>, packages: Array<number>) => {
-        for (let i = 0; i < packages.length; i++) {
-            if (selectedServices.indexOf(packages[i]) === -1) {
-                return false;
-            }
+    const findServicePriceById = (id: number) => {
+        return data!.services.filter((e) => e.id === id).map((e) => e)[0];
+    };
+
+    const countPricesInArray = (array: Array<number>) => {
+        return array.reduce((a, b) => a + b);
+    };
+
+    const findDifferenceBetweenPriceAndDiscount = (id: Array<number>, price: number) => {
+        const prices = [];
+
+        for (let i = 0; i < id.length; i++) {
+            prices.push(findServicePriceById(id[i]).price);
         }
-        return true;
+
+        return countPricesInArray(prices) - price;
+    };
+
+    const findBestDiscounts = () => {
+        const arrayWithDifference = [];
+
+        for (let i = 0; i < data!.packages.length; i++) {
+            const difference = findDifferenceBetweenPriceAndDiscount(
+                data!.packages[i].id,
+                data!.packages[i].price
+            );
+
+            difference > 0 && arrayWithDifference.push({
+                id: data!.packages[i].id,
+                difference: difference,
+            });
+        }
+
+        return arrayWithDifference.sort((a, b) => b.difference - a.difference);
+    };
+
+    const findDiscount = (price: number) => {
+        const bestDiscounts = findBestDiscounts().filter((e) => e.id.every((e) => selectedServicesId.includes(e)));
+
+        bestDiscounts[0] ? setDiscountPrice(price - bestDiscounts[0].difference) : setDiscountPrice(0);
+
+        return bestDiscounts[0]?.difference;
     };
 
     const count = () => {
         if (!data) {
-            return 0;
+            return;
         }
+        const calculateResult = selectedServicesId[0]
+            ? countPricesInArray(selectedServicesId.map((serviceId) => findServicePriceById(serviceId).price))
+            : 0;
 
-        const arrayWithPrices: Array<number> = [];
-
-        const countPriceInArrayWithPrices = () => {
-            return arrayWithPrices.reduce((a, b) => a + b);
-        };
-
-        const filteredServicesById = data.products.filter((e) => selectedServices.includes(e.id)) || [];
-
-        for (let i = 0; i < data.packages.length; i++) {
-            contains(selectedServices, data.packages[i].id) && arrayWithPrices.push(data.packages[i].price);
-        }
-
-        if (arrayWithPrices[0]) {
-            return countPriceInArrayWithPrices();
-        }
-
-        filteredServicesById.map((e) => arrayWithPrices.push(e.price));
-
-        return arrayWithPrices[0] && countPriceInArrayWithPrices();
+        setPrice(calculateResult);
+        findDiscount(calculateResult);
     };
 
     useEffect(() => {
-        setPrice(count());
+        count();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [data, selectedServices]);
+    }, [data, selectedServicesId]);
 
     return { price, discountPrice };
 };

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export type Data = {
-    products: [
+    services: [
         {
             name: string;
             id: number;
@@ -12,6 +12,13 @@ export type Data = {
     packages: [
         {
             id: Array<number>;
+            price: number;
+        }
+    ],
+    specialOffer: [
+        {
+            id: number;
+            includeId: Array<number>;
             price: number;
         }
     ];

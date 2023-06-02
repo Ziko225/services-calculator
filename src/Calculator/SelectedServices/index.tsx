@@ -11,11 +11,11 @@ type Props = {
 
 const SelectedServices = ({ selectedServicesId, data, addService, removeService, clearSelectedServices }: Props) => {
     const findServiceNameByid = (id: number) => {
-        return data?.products.filter((e) => e.id === id).map((e) => e.name);
+        return data?.services.filter((e) => e.id === id).map((e) => e.name);
     };
 
     const servicesWithIncudeId = (id: number) => {
-        return data?.products.filter((e) => e.includeId && e.id === id) || [];
+        return data?.services.filter((e) => e.includeId && e.id === id) || [];
     };
 
     if (selectedServicesId[0]) {
@@ -23,27 +23,26 @@ const SelectedServices = ({ selectedServicesId, data, addService, removeService,
             <>
                 <h2 className="calculator__subtitile">Wybrano:</h2>
                 <ul className="calculator__list">{
-                    selectedServicesId.map((productId, index) => (
-                        <li key={productId}>
+                    selectedServicesId.map((serviceId, index) => findServiceNameByid(serviceId)![0] &&
+                        <li key={serviceId}>
                             <button className="list__button" onClick={() => removeService(index)}>
-                                {findServiceNameByid(productId)}
+                                {findServiceNameByid(serviceId)}
                             </button>
                         </li>
-                    ))}
+                    )}
                 </ul>
                 <ul>
                     <ul>{
-                        selectedServicesId.map((productId) => (
-                            servicesWithIncudeId(productId).map((e) =>
-                                !selectedServicesId.includes(e.includeId!) &&
-                                <li className="offered" key={e.id}>
-                                    <span>
-                                        Do usługi: <strong >{e.name}</strong> polecamy usługe: <strong>{findServiceNameByid(e.includeId!)}</strong>
-                                    </span>
-                                    <button onClick={() => addService(e.includeId!)} className="services__button">+</button>
-                                </li>
-                            )
-                        ))}
+                        selectedServicesId.map((serviceId) => servicesWithIncudeId(serviceId).map((e) =>
+                            !selectedServicesId.includes(e.includeId!) &&
+                            <li className="offered" key={e.id}>
+                                <span>
+                                    Do usługi: <strong >{e.name}</strong> polecamy usługe: <strong>{findServiceNameByid(e.includeId!)}</strong>
+                                </span>
+                                <button onClick={() => addService(e.includeId!)} className="services__button">+</button>
+                            </li>
+                        )
+                        )}
                     </ul>
                 </ul>
                 <button className="resetButton" onClick={() => clearSelectedServices()}>Wyczyść wszystko</button>

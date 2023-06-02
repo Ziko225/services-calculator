@@ -7,7 +7,7 @@ type Props = {
 };
 
 const ChooseService = ({ data, selectedServices, addService }: Props) => {
-    const unselectedServices = data?.products.filter((e) => !selectedServices.includes(e.id));
+    const unselectedServices = data?.services.filter((e) => !selectedServices.includes(e.id));
 
     if (data) {
         return (
@@ -15,13 +15,13 @@ const ChooseService = ({ data, selectedServices, addService }: Props) => {
                 <h2 className="calculator__subtitile">Wyberz usługe:</h2>
                 <ul className="calculator__list">
                     {
-                        unselectedServices?.map((product) => (
-                            <li key={product.id}>
-                                <button onClick={() => addService(product.id)}
+                        unselectedServices?.map((services) => (
+                            <li key={services.id}>
+                                <button onClick={() => addService(services.id)}
                                     className="list__button"
-                                    value={product.id}
+                                    value={services.id}
                                 >
-                                    {product.name}
+                                    {services.name}
                                 </button>
                             </li>
                         ))
