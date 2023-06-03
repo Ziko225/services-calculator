@@ -24,8 +24,10 @@ export type Data = {
     ];
 } | null;
 
-const useGetData = (year: string) => {
+const useGetData = (initialState: string) => {
     const [data, setData] = useState<Data>(null);
+
+    const [year, setYear] = useState(initialState);
 
     const getData = async () => {
         if (year) try {
@@ -42,7 +44,7 @@ const useGetData = (year: string) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [year]);
 
-    return data;
+    return { data, year, setYear };
 };
 
 export default useGetData;

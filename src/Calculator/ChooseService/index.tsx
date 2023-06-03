@@ -1,13 +1,14 @@
-import { Data } from "../hooks/useGetData";
+import { useContext } from "react";
+import CalculatorContext from "../../calculatorContext";
 
-type Props = {
-    data: Data;
-    selectedServices: Array<number>;
-    addServices: (id: Array<number>) => void;
-};
+const ChooseService = () => {
+    const { getSelectServices, getData } = useContext(CalculatorContext);
 
-const ChooseService = ({ data, selectedServices, addServices }: Props) => {
-    const unselectedServices = data?.services.filter((e) => !selectedServices.includes(e.id));
+    const { selectedServicesId, addServices } = getSelectServices;
+
+    const { data } = getData;
+
+    const unselectedServices = data?.services.filter((e) => !selectedServicesId.includes(e.id));
 
     if (data) {
         return (

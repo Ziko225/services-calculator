@@ -17,7 +17,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
         const prices = [];
 
         for (let i = 0; i < id.length; i++) {
-            prices.push(findServiceById(id[i]).price);
+            prices.push(findServiceById(id[i])?.price || 0);
         }
 
         return countNumbers(prices) - price;
@@ -69,7 +69,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
         const discountNames: Array<string> = [];
 
         for (let i = 0; i < discountId.length; i++) {
-            discountNames.push(findServiceById(discountId[i]).name);
+            discountNames.push(findServiceById(discountId[i])?.name || "");
         }
 
         return { names: discountNames, price: findDiscountWithIdAndDiference()?.price };

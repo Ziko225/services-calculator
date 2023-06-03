@@ -3,6 +3,8 @@ import { useState } from "react";
 const useSelectServices = () => {
     const [selectedServicesId, setSelectedServicesId] = useState<Array<number>>([]);
 
+    const [isAnyRequiredService, setIsAnyRequiredService] = useState(false);
+
     const clearSelectedServices = () => setSelectedServicesId([]);
 
     const addServices = (arrayWithId: Array<number>) => {
@@ -22,7 +24,7 @@ const useSelectServices = () => {
         ]);
     };
 
-    return { selectedServicesId, addServices, removeService, clearSelectedServices };
+    return { selectedServicesId, addServices, removeService, clearSelectedServices, isAnyRequiredService, setIsAnyRequiredService };
 };
 
 export default useSelectServices;

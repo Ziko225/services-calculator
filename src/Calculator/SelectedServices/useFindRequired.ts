@@ -1,4 +1,4 @@
-import { Data } from "../hooks/useGetData";
+import { Data } from "../../hooks/useGetData";
 
 const useFindRequired = (data: Data, selectedServicesId: Array<number>) => {
     const findServiceNameByid = (id: number) => {

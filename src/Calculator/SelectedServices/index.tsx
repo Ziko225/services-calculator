@@ -1,18 +1,13 @@
-import { useEffect } from "react";
-import { Data } from "../hooks/useGetData";
+import { useContext, useEffect } from "react";
+import CalculatorContext from "../../calculatorContext";
 import useFindRequired from "./useFindRequired";
 import "./style.css";
 
-type Props = {
-    selectedServicesId: Array<number>;
-    data: Data;
-    addServices: (arrayWithId: Array<number>) => void;
-    removeService: (arrayWithId: number) => void;
-    clearSelectedServices: () => void;
-    setIsAnyRequiredService: React.Dispatch<React.SetStateAction<boolean>>;
-};
+const SelectedServices = () => {
+    const { getSelectServices, getData } = useContext(CalculatorContext);
+    const { addServices, removeService, clearSelectedServices, setIsAnyRequiredService, selectedServicesId } = getSelectServices;
+    const { data } = getData;
 
-const SelectedServices = ({ selectedServicesId, data, addServices, removeService, clearSelectedServices, setIsAnyRequiredService }: Props) => {
     const { findServiceNameByid, requiredServices } = useFindRequired(data, selectedServicesId);
 
     useEffect(() => {

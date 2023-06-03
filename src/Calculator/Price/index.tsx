@@ -1,14 +1,14 @@
+import { useContext } from "react";
+import CalculatorContext from "../../calculatorContext";
 import "./style.css";
 
-type Props = {
-    selectedServicesId: Array<number>;
-    discountPrice: number;
-    price: number;
-    isAnyRequiredService: boolean;
-    findDiscountNamesAndPrice: () => { names: Array<string>, price: number | undefined; } | undefined;
-};
+const Price = () => {
+    const { getSelectServices, getCount } = useContext(CalculatorContext);
 
-const Price = ({ selectedServicesId, price, discountPrice, isAnyRequiredService, findDiscountNamesAndPrice }: Props) => {
+    const { isAnyRequiredService, selectedServicesId } = getSelectServices;
+
+    const { findDiscountNamesAndPrice, discountPrice, price } = getCount;
+
     const discountNamesAndPrice = findDiscountNamesAndPrice();
 
     if (selectedServicesId[0] && !isAnyRequiredService) {

@@ -1,12 +1,14 @@
+import { useContext } from "react";
+import CalculatorContext from "../../calculatorContext";
 import "./style.css";
 
-type Props = {
-    onChange: (e: string) => void;
-};
+const SelectYear = () => {
+    const { getData } = useContext(CalculatorContext);
 
-const SelectYear = ({ onChange }: Props) => {
+    const { setYear } = getData;
+
     return (
-        <select onChange={(e) => onChange(e.currentTarget.value)} className="input" name="year" id="year-select">
+        <select onChange={(e) => setYear(e.currentTarget.value)} className="input" name="year" id="year-select">
             <option value={"2023"}>2023</option>
             <option value={"2024"}>2024</option>
             <option value={"2025"}>2025</option>
