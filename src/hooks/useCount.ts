@@ -72,7 +72,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
             discountNames.push(findServiceById(discountId[i])?.name || "");
         }
 
-        return { names: discountNames, price: findDiscountWithIdAndDiference()?.price };
+        return { names: discountNames, price: findDiscountWithIdAndDiference()?.price || 0 };
     };
 
     const count = () => {

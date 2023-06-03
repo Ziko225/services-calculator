@@ -29,6 +29,10 @@ const useGetData = (initialState: string) => {
 
     const [year, setYear] = useState(initialState);
 
+    const findServiceById = (id: number) => {
+        return data?.services.filter((e) => e.id === id).map((e) => e)[0];
+    };
+
     const getData = async () => {
         if (year) try {
             const value = await fetch(`./exampleserver/${year}.json`);
@@ -44,7 +48,7 @@ const useGetData = (initialState: string) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [year]);
 
-    return { data, year, setYear };
+    return { data, year, setYear, findServiceById };
 };
 
 export default useGetData;
