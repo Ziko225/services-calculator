@@ -35,6 +35,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
             difference > 0 && arrayWithDifference.push({
                 id: [data!.specialOffer[i].id],
                 difference: difference,
+                price: data!.specialOffer[i].price
             });
         }
 
@@ -47,32 +48,31 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
             difference > 0 && arrayWithDifference.push({
                 id: data!.packages[i].id,
                 difference: difference,
+                price: data!.packages[i].price
             });
         }
 
         return arrayWithDifference.sort((a, b) => b.difference - a.difference);
     };
 
-    const findDiscount = (price?: number) => {
-        const bestDiscount = findBestDiscounts().filter((e) => e.id.every((e) => selectedServicesId.includes(e)))[0];
-
-        return bestDiscount || [];
+    const findDiscountWithIdAndDiference = (): { id: Array<number>, difference: number, price: number; } | undefined => {
+        return findBestDiscounts().filter((e) => e.id.every((e) => selectedServicesId.includes(e)))[0];
     };
 
-    const findDiscountNames = () => {
+    const findDiscountNamesAndPrice = () => {
         if (!data) {
             return;
         }
 
-        const discountId = findDiscount().id || [];
-
+        const discountId = findDiscountWithIdAndDiference()?.id || [];
+        console.log(discountId);
         const discountNames: Array<string> = [];
 
         for (let i = 0; i < discountId.length; i++) {
             discountNames.push(findServiceById(discountId[i]).name);
         }
 
-        return discountNames;
+        return { names: discountNames, price: findDiscountWithIdAndDiference()?.price };
     };
 
     const count = () => {
@@ -85,7 +85,9 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
             : 0;
 
         setPrice(countResult);
-        setDiscountPrice(countResult - findDiscount().difference);
+
+        const discountDifference = findDiscountWithIdAndDiference()?.difference;
+        discountDifference ? setDiscountPrice(countResult - discountDifference) : setDiscountPrice(0);
     };
 
     useEffect(() => {
@@ -93,7 +95,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedServicesId]);
 
-    return { price, discountPrice, findDiscountNames };
+    return { price, discountPrice, findDiscountNamesAndPrice };
 };
 
 export default useCount;

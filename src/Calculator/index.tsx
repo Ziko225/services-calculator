@@ -14,7 +14,7 @@ const Calculator = () => {
     const [isAnyRequiredService, setIsAnyRequiredService] = useState(false);
     const [year, setYear] = useState<string>("2023");
     const data = useGetData(year);
-    const { price, discountPrice, findDiscountNames } = useCount(data, selectedServicesId);
+    const { price, discountPrice, findDiscountNamesAndPrice } = useCount(data, selectedServicesId);
 
     useEffect(() => {
         clearSelectedServices();
@@ -40,7 +40,7 @@ const Calculator = () => {
                 discountPrice={discountPrice}
                 selectedServicesId={selectedServicesId}
                 isAnyRequiredService={isAnyRequiredService}
-                findDiscountNames={findDiscountNames} />
+                findDiscountNamesAndPrice={findDiscountNamesAndPrice} />
         </div>
     );
 };

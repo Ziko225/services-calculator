@@ -1,3 +1,12 @@
+.package {
+    font-weight: 700;
+}
+
+.package::after {
+    content: "+";
+    margin: 0 3px;
+}
+
 .price {
     font-size: 50px;
     font-weight: 700;
