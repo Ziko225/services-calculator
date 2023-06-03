@@ -65,7 +65,7 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
         }
 
         const discountId = findDiscountWithIdAndDiference()?.id || [];
-        console.log(discountId);
+
         const discountNames: Array<string> = [];
 
         for (let i = 0; i < discountId.length; i++) {

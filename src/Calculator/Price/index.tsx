@@ -15,19 +15,19 @@ const Price = ({ selectedServicesId, price, discountPrice, isAnyRequiredService,
         return (
             discountPrice
                 ? <div>
-                    {discountNamesAndPrice?.price && <div>
+                    {discountNamesAndPrice?.names[0] && <div>
                         <span> Promocja! </span>
-                        {discountNamesAndPrice?.names.map((name, i) => <span key={name + i} className="package">{name}</span>)}
-                        w cenie: <strong>{discountNamesAndPrice?.price}&nbsp;zł</strong>
+                        {discountNamesAndPrice?.names.map((name) => <span key={name + discountNamesAndPrice.price} className="package">{name}</span>)}
+                        w cenie: <strong>{discountNamesAndPrice?.price || 0}&nbsp;zł</strong>
                     </div>}
-                    <span className="price">Cena: <span className="price--old">{price} zł</span> {discountPrice} zł</span>
+                    <span className="price">Cena: {discountPrice}&nbsp;zł</span>
+                    <span className="price price--old">{price}&nbsp;zł</span>
                 </div>
                 : <span className="price">Cena: {price || 0}&nbsp;zł</span>
         );
     } else {
         return null;
     }
-
 };
 
 export default Price;
