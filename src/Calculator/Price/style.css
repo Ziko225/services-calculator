@@ -7,6 +7,10 @@
     margin: 0 3px;
 }
 
+.package:nth-last-child(2)::after {
+    content: "";
+}
+
 .price {
     font-size: 50px;
     font-weight: 700;
