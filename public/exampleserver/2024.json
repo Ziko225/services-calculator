@@ -19,7 +19,7 @@
             "name": "Dekoder 4K",
             "id": 44,
             "price": 29,
-            "includeId": [
+            "requiredId": [
                 22
             ]
         },
@@ -27,7 +27,7 @@
             "name": "Usługa testowa (wymaga usł internet i TV)",
             "id": 117,
             "price": 59,
-            "includeId": [
+            "requiredId": [
                 11,
                 22
             ]

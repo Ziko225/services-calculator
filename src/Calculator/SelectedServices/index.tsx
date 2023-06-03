@@ -30,11 +30,11 @@ const SelectedServices = () => {
                 </ul>
                 <button className="resetButton" onClick={() => clearSelectedServices()}>Wyczyść wszystko</button>
                 <ul>
-                    {requiredServices.map((e) => (
-                        <li className="offered" key={e.id}>
-                            <span className="offered__text">Usługa: <strong >{e.name}</strong> wymaga usługi:</span>
-                            <strong>{e.includeId?.map((e) => <span key={e} className="offered__require">{findServiceNameByid(e)}</span>)}</strong>
-                            <button onClick={() => addServices(e.includeId!)} className="services__button">+</button>
+                    {requiredServices.map((requiredService) => (
+                        <li className="offered" key={requiredService.id}>
+                            <span className="offered__text">Usługa: <strong >{requiredService.name}</strong> wymaga usługi:</span>
+                            <strong>{requiredService.requiredId?.map((id) => <span key={id} className="offered__require">{findServiceNameByid(id)}</span>)}</strong>
+                            <button onClick={() => addServices(requiredService.requiredId!)} className="services__button">+</button>
                         </li>
                     ))}
                 </ul>

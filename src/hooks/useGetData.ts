@@ -6,7 +6,7 @@ export type Data = {
             name: string;
             id: number;
             price: number;
-            includeId?: Array<number>;
+            requiredId?: Array<number>;
         }
     ],
     packages: [
