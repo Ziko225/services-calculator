@@ -1,22 +1,24 @@
+import { useEffect } from "react";
 import { Data } from "../hooks/useGetData";
+import useFindRequired from "./useFindRequired";
 import "./style.css";
 
 type Props = {
     selectedServicesId: Array<number>;
     data: Data;
-    addService: (e: number) => void;
-    removeService: (e: number) => void;
+    addServices: (arrayWithId: Array<number>) => void;
+    removeService: (arrayWithId: number) => void;
     clearSelectedServices: () => void;
+    setIsAnyRequiredService: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const SelectedServices = ({ selectedServicesId, data, addService, removeService, clearSelectedServices }: Props) => {
-    const findServiceNameByid = (id: number) => {
-        return data?.services.filter((e) => e.id === id).map((e) => e.name);
-    };
+const SelectedServices = ({ selectedServicesId, data, addServices, removeService, clearSelectedServices, setIsAnyRequiredService }: Props) => {
+    const { findServiceNameByid, requiredServices } = useFindRequired(data, selectedServicesId);
 
-    const servicesWithIncudeId = (id: number) => {
-        return data?.services.filter((e) => e.includeId && e.id === id) || [];
-    };
+    useEffect(() => {
+        requiredServices[0] ? setIsAnyRequiredService(true) : setIsAnyRequiredService(false);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [requiredServices]);
 
     if (selectedServicesId[0]) {
         return (
@@ -31,21 +33,16 @@ const SelectedServices = ({ selectedServicesId, data, addService, removeService,
                         </li>
                     )}
                 </ul>
-                <ul>
-                    <ul>{
-                        selectedServicesId.map((serviceId) => servicesWithIncudeId(serviceId).map((e) =>
-                            !selectedServicesId.includes(e.includeId!) &&
-                            <li className="offered" key={e.id}>
-                                <span>
-                                    Do usługi: <strong >{e.name}</strong> polecamy usługe: <strong>{findServiceNameByid(e.includeId!)}</strong>
-                                </span>
-                                <button onClick={() => addService(e.includeId!)} className="services__button">+</button>
-                            </li>
-                        )
-                        )}
-                    </ul>
-                </ul>
                 <button className="resetButton" onClick={() => clearSelectedServices()}>Wyczyść wszystko</button>
+                <ul>
+                    {requiredServices.map((e) => (
+                        <li className="offered" key={e.id}>
+                            <span className="offered__text">Usługa: <strong >{e.name}</strong> wymaga usługi:</span>
+                            <strong>{e.includeId?.map((e) => <span className="offered__require">{findServiceNameByid(e)}</span>)}</strong>
+                            <button onClick={() => addServices(e.includeId!)} className="services__button">+</button>
+                        </li>
+                    ))}
+                </ul>
             </>
         );
     } else {

@@ -5,7 +5,26 @@
     justify-content: flex-start;
     font-size: 16px;
     margin-bottom: 15px;
-    gap: 0 7px
+}
+
+.offered__text {
+    margin-right: 5px;
+}
+
+.offered__require {
+    margin-right: 5px;
+}
+
+.offered__require::after {
+    content: ",";
+}
+
+.offered__require:nth-last-child(1) {
+    margin-right: 4px;
+}
+
+.offered__require:nth-last-child(1)::after {
+    content: "";
 }
 
 .services__button {
@@ -14,7 +33,6 @@
     justify-content: center;
     border-radius: 50%;
     border: none;
-    margin: 0 10px -4px 5px;
     background-color: teal;
     color: #fff;
     padding: 4px 8px;

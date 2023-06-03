@@ -19,7 +19,9 @@
             "name": "Dekoder 4K",
             "id": 44,
             "price": 29,
-            "includeId": 22
+            "includeId": [
+                22
+            ]
         }
     ],
     "packages": [

@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import useGetData from "./hooks/useGetData";
-import useSelectedServices from "./hooks/useSelectedServices";
+import useSelectServices from "./hooks/useSelectedServices";
 import SelectYear from "./SelectYear";
 import SelectedServices from "./SelectedServices";
 import ChooseService from "./ChooseService";
 import useCount from "./hooks/useCount";
-import "./style.css";
 import Price from "./Price";
+import "./style.css";
+
 
 const Calculator = () => {
-    const { selectedServicesId, addService, removeService, clearSelectedServices } = useSelectedServices();
-    const [year, setYear] = useState<string>("");
+    const { selectedServicesId, addServices, removeService, clearSelectedServices } = useSelectServices();
+    const [isAnyRequiredService, setIsAnyRequiredService] = useState(false);
+    const [year, setYear] = useState<string>("2023");
     const data = useGetData(year);
-    const { price, discountPrice } = useCount(data, selectedServicesId);
+    const { price, discountPrice, findDiscountNames } = useCount(data, selectedServicesId);
 
     useEffect(() => {
         clearSelectedServices();
@@ -22,17 +24,23 @@ const Calculator = () => {
     return (
         <div className="calculator">
             <h1>kalkulator usług telekomunikacyjnych</h1>
-            <label htmlFor="range" typeof="selector">Wyberz rok:</label>
+            <label typeof="selector">Wyberz rok:</label>
             <SelectYear onChange={setYear} />
-            <ChooseService data={data} selectedServices={selectedServicesId} addService={addService} />
+            <ChooseService data={data} selectedServices={selectedServicesId} addServices={addServices} />
             <SelectedServices
+                setIsAnyRequiredService={setIsAnyRequiredService}
                 selectedServicesId={selectedServicesId}
                 data={data}
-                addService={addService}
+                addServices={addServices}
                 removeService={removeService}
                 clearSelectedServices={clearSelectedServices}
             />
-            <Price price={price} discountPrice={discountPrice} selectedServicesId={selectedServicesId} />
+            <Price
+                price={price}
+                discountPrice={discountPrice}
+                selectedServicesId={selectedServicesId}
+                isAnyRequiredService={isAnyRequiredService}
+                findDiscountNames={findDiscountNames} />
         </div>
     );
 };

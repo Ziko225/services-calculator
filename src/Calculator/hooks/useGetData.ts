@@ -6,7 +6,7 @@ export type Data = {
             name: string;
             id: number;
             price: number;
-            includeId?: number;
+            includeId?: Array<number>;
         }
     ],
     packages: [
@@ -24,12 +24,12 @@ export type Data = {
     ];
 } | null;
 
-const useGetData = (year?: string) => {
+const useGetData = (year: string) => {
     const [data, setData] = useState<Data>(null);
 
     const getData = async () => {
-        try {
-            const value = await fetch(`./exampleserver/${year || 2023}.json`);
+        if (year) try {
+            const value = await fetch(`./exampleserver/${year}.json`);
             const decodedValue = await value.json();
             setData(decodedValue);
         } catch (error) {

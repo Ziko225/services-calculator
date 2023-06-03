@@ -3,10 +3,10 @@ import { Data } from "../hooks/useGetData";
 type Props = {
     data: Data;
     selectedServices: Array<number>;
-    addService: (id: number) => void;
+    addServices: (id: Array<number>) => void;
 };
 
-const ChooseService = ({ data, selectedServices, addService }: Props) => {
+const ChooseService = ({ data, selectedServices, addServices }: Props) => {
     const unselectedServices = data?.services.filter((e) => !selectedServices.includes(e.id));
 
     if (data) {
@@ -17,7 +17,7 @@ const ChooseService = ({ data, selectedServices, addService }: Props) => {
                     {
                         unselectedServices?.map((services) => (
                             <li key={services.id}>
-                                <button onClick={() => addService(services.id)}
+                                <button onClick={() => addServices([services.id])}
                                     className="list__button"
                                     value={services.id}
                                 >

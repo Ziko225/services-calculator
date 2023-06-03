@@ -19,18 +19,18 @@
             "name": "Dekoder 4K",
             "id": 44,
             "price": 29,
-            "includeId": 22
+            "includeId": [
+                22
+            ]
         },
         {
-            "name": "Usługa testowa (tylko 2024 rok)",
-            "id": 157,
-            "price": 59
-        },
-        {
-            "name": "Usługa testowa (wymaga usł internet)",
+            "name": "Usługa testowa (wymaga usł internet i TV)",
             "id": 117,
             "price": 59,
-            "includeId": 11
+            "includeId": [
+                11,
+                22
+            ]
         }
     ],
     "packages": [
