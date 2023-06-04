@@ -32,7 +32,9 @@ const useCount = (data: Data, selectedServicesId: Array<number>) => {
                 data!.specialOffer[i].price
             );
 
-            difference > 0 && arrayWithDifference.push({
+            const isSpecialOfferMeetsTheRequirements = difference > 0 && data?.specialOffer[i].requiredId.every((id) => selectedServicesId.includes(id));
+
+            isSpecialOfferMeetsTheRequirements && arrayWithDifference.push({
                 id: [data!.specialOffer[i].id],
                 difference: difference,
                 price: data!.specialOffer[i].price

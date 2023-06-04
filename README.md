@@ -106,7 +106,7 @@ This array assigns the specified price to only one **id**.
 "specialOffer": [
     {
         "id": 44,
-        "includeId": [
+        "requiredId": [
             11,
             22
         ],

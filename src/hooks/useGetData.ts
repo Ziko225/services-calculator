@@ -18,7 +18,7 @@ export type Data = {
     specialOffer: [
         {
             id: number;
-            includeId: Array<number>;
+            requiredId: Array<number>;
             price: number;
         }
     ];

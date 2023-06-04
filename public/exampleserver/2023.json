@@ -43,7 +43,7 @@
     "specialOffer": [
         {
             "id": 44,
-            "includeId": [
+            "requiredId": [
                 11,
                 22
             ],
